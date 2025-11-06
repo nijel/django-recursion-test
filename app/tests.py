@@ -9,6 +9,6 @@ class DebugTestCase(TestCase):
         Unit.objects.create(project=project, slug="unit")
 
         units = Unit.objects.prefetch_related(
-            Prefetch("project", queryset=Project.objects.only("name"))
+            Prefetch("project", queryset=Project.objects.only("descriptions", "notes"))
         )
         self.assertEqual(units[0].get_absolute_url(), "test/unit")
