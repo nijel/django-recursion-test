@@ -16,4 +16,5 @@ class DebugTestCase(TestCase):
     def test_project(self):
         Project.objects.create(name="Test", slug="test")
         projects = Project.objects.only("descriptions", "notes")
+        self.assertEqual(projects[0].notes, "")
         self.assertEqual(projects[0].slug, "test")
