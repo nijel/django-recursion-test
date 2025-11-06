@@ -12,3 +12,8 @@ class DebugTestCase(TestCase):
             Prefetch("project", queryset=Project.objects.only("descriptions", "notes"))
         )
         self.assertEqual(units[0].get_absolute_url(), "test/unit")
+
+    def test_project(self):
+        Project.objects.create(name="Test", slug="test")
+        projects = Project.objects.only("descriptions", "notes")
+        self.assertEqual(projects[0].slug, "test")
